@@ -11,9 +11,14 @@ export default function App() {
     "The Road Ahead",
     "Amazon Unbound: Jeff Bezos"
   ];
-
+  const sss = {
+    width: "50%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    border: "1px solid black"
+  };
   return (
-    <div className="App">
+    <div style={sss} className="App">
       <>
         <Routes>
           <Route path="/" element={<Home numbers={numbers} />}></Route>

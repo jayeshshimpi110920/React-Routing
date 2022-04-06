@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const ManageBook = (props) => {
+  console.log(props.numbers);
   const btn = {
     color: "white",
     border: "1px solid black",
@@ -8,13 +9,20 @@ const ManageBook = (props) => {
     margin: "20px"
   };
   const numbers = props.numbers;
+
+  function DeleteHandle(number) {
+    var index = props.numbers.indexOf(number);
+    if (index !== -1) props.numbers.splice(index, 1);
+    alert("Done Deleted   --> " + number);
+  }
   const listItems = numbers.map((number) => (
     <li>
       {number}
       <Link style={btn} to="/manage-books/1" data={{ number }}>
         {" "}
-        Manage
+        Details
       </Link>
+      <button onClick={() => DeleteHandle(number)}>Delete</button>
     </li>
   ));
 
@@ -22,12 +30,12 @@ const ManageBook = (props) => {
     textAlign: "left"
   };
 
-  const mystylee = {
-    padding: "10px",
-    border: "1px solid black",
-    margin: "5px",
-    backgroundColor: "grey"
-  };
+  // const mystylee = {
+  //   padding: "10px",
+  //   border: "1px solid black",
+  //   margin: "5px",
+  //   backgroundColor: "grey"
+  // };
 
   return (
     <>
@@ -39,42 +47,10 @@ const ManageBook = (props) => {
         </Link>
       </div>
       <h2>List of Book here</h2>
-      {/* <ol style={mystyle}>
-          {props.questionList.map((question) => {
-            return <li>{this.question.item}</li>;
-          })}
-        </ol>  */}
+
       <ol style={mystyle}>{listItems}</ol>
     </>
   );
 };
 
 export default ManageBook;
-
-// return (
-
-// );
-
-// const ManageBook = (props) => {
-//   const numbers = props.numbers;
-//   const listItems = numbers.map((number) => <li>{number}</li>);
-
-//   const mystyle = {
-//     color: "red"
-//   };
-//   return (
-//     <>
-//       <h1>ManageBook from here </h1>
-//       <div>
-//         <Link style={mystyle} to="/">
-//           Go back to home
-//         </Link>
-//       </div>
-//       <div>
-//         <ol style={mystyle}>{listItems}</ol>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default ManageBook;
